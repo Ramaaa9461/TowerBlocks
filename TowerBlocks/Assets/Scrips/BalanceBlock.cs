@@ -16,7 +16,10 @@ public class BalanceBlock : MonoBehaviour
     {
         SJ.connectedBody = rg;
     }
-    
-   
- 
+
+    public void upPivotPosition(Vector3 upPosition)
+    {
+        pivot.transform.position += upPosition;
+    }
+
 }
