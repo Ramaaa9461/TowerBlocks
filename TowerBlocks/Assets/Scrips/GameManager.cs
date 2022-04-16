@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] int totalLife = 3;
     [SerializeField] int currentLife = 0;
     [SerializeField] Text currentFloor;
+    [SerializeField] Text currentLifeText;
 
     void Awake()
     {
@@ -29,7 +30,7 @@ public class GameManager : MonoBehaviour
         Bb.rigidBodyJoint(currentCube.GetComponent<Rigidbody>());
 
         currentFloor.text = "0";
-        currentLife = totalLife;
+        currentLife = totalLife + 1;
     }
     void Update()
     {
@@ -51,7 +52,11 @@ public class GameManager : MonoBehaviour
     }
     public void SubtractLife()
     {
-        totalLife--;
+        if (currentLife > 0)
+        {
+            currentLife--;
+        }
+        currentLifeText.text = currentLife.ToString();
     }
 
 

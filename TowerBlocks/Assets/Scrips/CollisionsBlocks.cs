@@ -29,6 +29,7 @@ public class CollisionsBlocks : MonoBehaviour
                 transform.SetParent(collision.transform);
                 GameManager.instance.currentFloorText(1);
             }
+            GameManager.instance.SubtractLife();
         }
         Destroy(this);
     }
