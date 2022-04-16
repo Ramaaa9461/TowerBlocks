@@ -11,6 +11,8 @@ public class FloorChild : MonoBehaviour
     {
         newCamPosition = transform.GetChild(transform.childCount - 1);
 
-        cam.GetComponent<CameraMovement>().upCamera(newCamPosition.position.y + newCamPosition.localScale.y );
+        cam.GetComponent<CameraMovement>().upCamera(newCamPosition.position.y + newCamPosition.localScale.y);
     }
+ 
+
 }

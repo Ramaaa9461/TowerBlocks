@@ -1,17 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
 
     public static GameManager instance;
 
+
     BlockerCreator Bc;
     BalanceBlock Bb;
     GameObject currentCube;
-    //Vector3 upPosition = new Vector3(0, 2, 0);
+
+    [SerializeField] int totalLife = 3;
+    [SerializeField] int currentLife = 0;
+    [SerializeField] Text currentFloor;
 
     void Awake()
     {
@@ -24,6 +28,8 @@ public class GameManager : MonoBehaviour
         currentCube = Bc.CreateBlock();
         Bb.rigidBodyJoint(currentCube.GetComponent<Rigidbody>());
 
+        currentFloor.text = "0";
+        currentLife = totalLife;
     }
     void Update()
     {
@@ -42,5 +48,15 @@ public class GameManager : MonoBehaviour
     {
         Bb.upPivotPosition(currentCube.transform.localScale.y);
         Bc.upInitPosition(currentCube.transform.localScale.y);
+    }
+    public void SubtractLife()
+    {
+        totalLife--;
+    }
+
+
+    public void currentFloorText(int floor)
+    {
+        currentFloor.text = floor.ToString();
     }
 }

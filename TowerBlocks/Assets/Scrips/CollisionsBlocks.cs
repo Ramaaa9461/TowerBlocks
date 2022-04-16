@@ -18,6 +18,7 @@ public class CollisionsBlocks : MonoBehaviour
             if (collision.transform.parent.name == "Floor")
             {
                 GameManager.instance.upPositions();
+                GameManager.instance.currentFloorText(collision.transform.parent.childCount);
                 gameObject.GetComponentInParent<FloorChild>().OnNewChild();
             }
         }
@@ -26,6 +27,7 @@ public class CollisionsBlocks : MonoBehaviour
             if (collision.transform.childCount == 0)
             {
                 transform.SetParent(collision.transform);
+                GameManager.instance.currentFloorText(1);
             }
         }
         Destroy(this);
