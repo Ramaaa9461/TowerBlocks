@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
     BlockerCreator Bc;
     BalanceBlock Bb;
     GameObject currentCube;
-    Vector3 upPosition = new Vector3(0, 2, 0);
+    //Vector3 upPosition = new Vector3(0, 2, 0);
 
     void Awake()
     {
@@ -30,7 +30,7 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             Bb.rigidBodyJoint(null);
-            upPositions();
+            //upPositions();
         }
     }
     public void InstantiateBlocks()
@@ -38,9 +38,9 @@ public class GameManager : MonoBehaviour
         currentCube = Bc.CreateBlock();
         Bb.rigidBodyJoint(currentCube.GetComponent<Rigidbody>());
     }
-    void upPositions()
+    public void upPositions()
     {
-        Bb.upPivotPosition(upPosition);
-        Bc.upInitPosition(upPosition);
+        Bb.upPivotPosition(currentCube.transform.localScale.y);
+        Bc.upInitPosition(currentCube.transform.localScale.y);
     }
 }

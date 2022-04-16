@@ -25,9 +25,9 @@ public class BlockerCreator : MonoBehaviour
 
         return cube;
     }
-    public void upInitPosition(Vector3 upPosition)
+    public void upInitPosition(float upPositionY)
     {
-       initialPosition += upPosition;
+       initialPosition += new Vector3(0, upPositionY, 0);
     }
 
     public GameObject getCube()
