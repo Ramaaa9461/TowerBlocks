@@ -37,9 +37,9 @@ public class BalanceBlock : MonoBehaviour
         SJ.connectedBody = rg;
     }
 
-    public void upPivotPosition(float upPositionY)
+    public void upPivotPosition(Vector3 upPosition)
     {
-        pivot.transform.position += new Vector3(0, upPositionY, 0);
+        pivot.transform.position += upPosition;
     }
 
 }

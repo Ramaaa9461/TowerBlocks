@@ -8,15 +8,19 @@ public class GameManager : MonoBehaviour
 
     public static GameManager instance;
 
-
     BlockerCreator Bc;
     BalanceBlock Bb;
     GameObject currentCube;
 
     [SerializeField] int totalLife = 3;
-    [SerializeField] int currentLife = 0;
+    int currentLife = 0;
     [SerializeField] Text currentFloor;
     [SerializeField] Text currentLifeText;
+
+    [SerializeField] Vector3 updatePosition;
+
+    float timer;
+    bool activeTimer = false;
 
     void Awake()
     {
@@ -34,11 +38,24 @@ public class GameManager : MonoBehaviour
     }
     void Update()
     {
+        if (activeTimer)
+        {
+            timer += Time.deltaTime;
+
+            if (timer > 1.5f)
+            {
+                InstantiateBlocks();
+                timer = 0;
+                activeTimer = false;
+            }
+        }
+
         if (Input.GetKeyDown(KeyCode.Space))
         {
             Bb.rigidBodyJoint(null);
-            //upPositions();
+            activeTimer = true;
         }
+
     }
     public void InstantiateBlocks()
     {
@@ -47,8 +64,8 @@ public class GameManager : MonoBehaviour
     }
     public void upPositions()
     {
-        Bb.upPivotPosition(currentCube.transform.localScale.y);
-        Bc.upInitPosition(currentCube.transform.localScale.y);
+        Bb.upPivotPosition(updatePosition);// currentCube.transform.localScale.y);
+        Bc.upInitPosition(updatePosition);// currentCube.transform.localScale.y);
     }
     public void SubtractLife()
     {

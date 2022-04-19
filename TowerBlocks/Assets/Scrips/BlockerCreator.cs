@@ -6,7 +6,7 @@ public class BlockerCreator : MonoBehaviour
 {
     GameObject cube;
     float horizontalForce = 10;
-    Vector3 initialPosition = new Vector3(0, 3,  0);
+    Vector3 initialPosition = new Vector3(0, 5,  0);
     public GameObject CreateBlock()
     {
         cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
@@ -25,14 +25,15 @@ public class BlockerCreator : MonoBehaviour
 
         return cube;
     }
-    public void upInitPosition(float upPositionY)
+    public void upInitPosition(Vector3 upPosition)
     {
-       initialPosition += new Vector3(0, upPositionY, 0);
+       initialPosition += upPosition;
     }
 
     public GameObject getCube()
     {
         return cube;
     }
+
 
 }

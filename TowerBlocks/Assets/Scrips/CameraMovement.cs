@@ -4,16 +4,23 @@ using UnityEngine;
 
 public class CameraMovement : MonoBehaviour
 {
-    Vector3 vel = Vector3.zero;
-    [SerializeField] float transitionSpeed = 5;
-    public void upCamera(float camPositionY)
+   [SerializeField] Vector3 offSet;
+    public void upCamera(Vector3 camPosition)
     {
-        // transform.position = Vector3.Lerp(transform.position, new Vector3(transform.position.x, camPositionY, transform.position.z), Time.deltaTime * transitionSpeed);
-         transform.position = new Vector3(transform.position.x, camPositionY, transform.position.z);
-        // transform.position = Vector3.SmoothDamp(transform.position, new Vector3(transform.position.x, camPositionY, transform.position.z), ref vel, smoothness);
+        StartCoroutine(FadeIn(camPosition));
+        //transform.position = new Vector3(transform.position.x, camPositionY, transform.position.z);
     }
-    public void VibrationCam()
+    IEnumerator FadeIn(Vector3 camPosition)
     {
+        float progress = 0;
+        Vector3 newPositon = new Vector3(transform.position.x, camPosition.y, transform.position.z) + offSet;
 
+        while (progress <= 1)
+        {
+            transform.position = Vector3.Lerp(transform.position, newPositon, progress);
+            progress += Time.deltaTime;
+            yield return null;
+        }
+        transform.position = newPositon;
     }
 }

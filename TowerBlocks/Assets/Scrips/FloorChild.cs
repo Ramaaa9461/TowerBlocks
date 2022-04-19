@@ -5,13 +5,13 @@ using UnityEngine;
 public class FloorChild : MonoBehaviour
 {
     [SerializeField] Camera cam;
-    Transform newCamPosition;
+    Transform lastChild;
 
     public void OnNewChild()
     {
-        newCamPosition = transform.GetChild(transform.childCount - 1);
+        lastChild = transform.GetChild(transform.childCount - 1);
 
-        cam.GetComponent<CameraMovement>().upCamera(newCamPosition.position.y + newCamPosition.localScale.y);
+        cam.GetComponent<CameraMovement>().upCamera(lastChild.position);// lastChild.localScale.y);
     }
  
 
