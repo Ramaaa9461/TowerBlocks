@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -21,7 +22,6 @@ public class GameManager : MonoBehaviour
 
     float timer;
     bool activeTimer = false;
-
     void Awake()
     {
         instance = this;
@@ -56,6 +56,8 @@ public class GameManager : MonoBehaviour
             activeTimer = true;
         }
 
+  
+
     }
     public void InstantiateBlocks()
     {
@@ -64,8 +66,8 @@ public class GameManager : MonoBehaviour
     }
     public void upPositions()
     {
-        Bb.upPivotPosition(updatePosition);// currentCube.transform.localScale.y);
-        Bc.upInitPosition(updatePosition);// currentCube.transform.localScale.y);
+        Bb.upPivotPosition(updatePosition);
+        Bc.upInitPosition(updatePosition);
     }
     public void SubtractLife()
     {
@@ -73,9 +75,17 @@ public class GameManager : MonoBehaviour
         {
             currentLife--;
         }
+        else
+        {
+            restart();
+        }
         currentLifeText.text = currentLife.ToString();
     }
 
+    private void restart()
+    {
+        
+    }
 
     public void currentFloorText(int floor)
     {

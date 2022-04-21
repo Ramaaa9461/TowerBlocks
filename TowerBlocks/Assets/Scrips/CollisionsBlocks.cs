@@ -15,7 +15,7 @@ public class CollisionsBlocks : MonoBehaviour
             gameObject.GetComponent<Rigidbody>().isKinematic = true;
 
 
-            if (collision.transform.parent != null)
+           if (collision.transform.parent != null)
             {
                 transform.SetParent(collision.transform.parent);
 

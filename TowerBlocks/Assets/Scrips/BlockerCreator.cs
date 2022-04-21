@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class BlockerCreator : MonoBehaviour
 {
-    GameObject cube;
+     GameObject cube;
+
     float horizontalForce = 10;
-    Vector3 initialPosition = new Vector3(0, 5,  0);
+    Vector3 initialPosition = new Vector3(0, 8,  0);
+    Vector3 axis;
     public GameObject CreateBlock()
     {
         cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
@@ -21,7 +23,12 @@ public class BlockerCreator : MonoBehaviour
 
         cube.layer = 7;
         cube.transform.position = initialPosition;
-        cube.GetComponent<Rigidbody>().AddForce(Vector3.right * horizontalForce, ForceMode.Impulse);
+
+        horizontalForce = Random.Range(10, 15);
+        axis = Random.Range(0, 2) == 0 ? Vector3.right : Vector3.left;
+
+        cube.GetComponent<Rigidbody>().AddForce(axis * horizontalForce, ForceMode.Impulse);
+
 
         return cube;
     }
